@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mourchid Entreprise — Expertise Multisectorielle</title>
+  <meta name="description" content="Mourchid Entreprise : Cybersécurité, Énergies Renouvelables, Agriculture, Pisciculture. Un partenaire. Plusieurs expertises." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ── STYLES SUPPLÉMENTAIRES POUR LES IMAGES ── -->
+  <style>
+    /* ── Images produits ── */
+    .product-img {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+      background: #1a1a2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .product-card:hover .product-img img { transform: scale(1.07); }
+    .product-img .img-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+    .product-img img.loaded + .img-fallback { display: none; }
+
+    /* ── Images portfolio ── */
+    .portfolio-img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      overflow: hidden;
+    }
+    .portfolio-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .portfolio-item:hover .portfolio-img img { transform: scale(1.08); }
+    .portfolio-img .img-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: rgba(255,255,255,0.5);
+      background: linear-gradient(135deg,#1A35A0,#0d1f6e);
+    }
+    .portfolio-img img.loaded ~ .img-fallback { display: none; }
+
+    /* ── Avatars témoignages avec photos ── */
+    .testi-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .testi-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── Images pôles ── */
+    .pole-img-wrap {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+    .pole-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .pole-card:hover .pole-img-wrap img { transform: scale(1.05); }
+    .pole-img-wrap .img-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--accent);
+      background: rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <img src="LOGO.png" alt="ME Logo" class="preloader-logo" />
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+      <span class="preloader-text">Chargement...</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ NAVBAR -->
+  <header id="navbar">
+    <div class="nav-container">
+      <a href="#accueil" class="nav-logo">
+        <img src="LOGO.png" alt="Mourchid Entreprise" />
+        <span class="nav-brand">Mourchid<em>Entreprise</em></span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#accueil" class="nav-link">Accueil</a>
+        <a href="#poles" class="nav-link">Expertises</a>
+        <a href="#boutique" class="nav-link">Boutique</a>
+        <a href="#portfolio" class="nav-link">Réalisations</a>
+        <a href="#reservation" class="nav-link">Rendez-vous</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-btn" aria-label="Changer le thème">
+          <span class="theme-icon sun"><i class="fa-solid fa-sun"></i></span>
+          <span class="theme-icon moon"><i class="fa-solid fa-moon"></i></span>
+        </button>
+        <button class="btn-primary nav-cta">
+          <i class="fa-solid fa-calendar-check"></i> Consultation
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════ HERO -->
+  <section id="accueil" class="hero">
+    <div class="slideshow">
+      <div class="slide active" style="background-image: url('images/hero/hero-cybersecurity.jpg'), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80')"></div>
+      <div class="slide" style="background-image: url('images/hero/hero-solar.jpg'), url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80')"></div>
+      <div class="slide" style="background-image: url('images/hero/hero-agriculture.jpg'), url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1920&q=80')"></div>
+      <div class="slide" style="background-image: url('images/hero/hero-fish.jpg'), url('https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=1920&q=80')"></div>
+      <div class="slide-overlay"></div>
+    </div>
+    <div class="particles" id="particles"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <i class="fa-solid fa-star"></i> Expertise Multisectorielle Certifiée
+      </div>
+      <h1 class="hero-title reveal">
+        <span class="line">Un Partenaire.</span>
+        <span class="line gradient-text">Plusieurs Expertises.</span>
+      </h1>
+      <p class="hero-subtitle reveal">
+        De la cybersécurité aux énergies renouvelables, de l'agriculture intelligente à la pisciculture — 
+        <strong>Mourchid Entreprise</strong> vous accompagne dans chaque projet avec rigueur et innovation.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#poles" class="btn-primary">
+          <i class="fa-solid fa-rocket"></i> Découvrir nos pôles
+        </a>
+        <a href="#portfolio" class="btn-ghost">
+          <i class="fa-solid fa-eye"></i> Voir nos réalisations
+        </a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat">
+          <span class="stat-num" data-target="150">0</span>+
+          <span class="stat-label">Projets réalisés</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="4">0</span>
+          <span class="stat-label">Pôles d'expertise</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="98">0</span>%
+          <span class="stat-label">Clients satisfaits</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span>Défiler</span>
+      <i class="fa-solid fa-chevron-down bounce"></i>
+    </div>
+
+    <div class="slide-indicators">
+      <button class="indicator active"></button>
+      <button class="indicator"></button>
+      <button class="indicator"></button>
+      <button class="indicator"></button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ ABOUT STRIP -->
+  <section class="about-strip">
+    <div class="container">
+      <div class="strip-content reveal">
+        <div class="strip-icon"><i class="fa-solid fa-award"></i></div>
+        <p>Fondée avec une vision <strong>transdisciplinaire</strong>, Mourchid Entreprise allie formation en économie agricole, expertise IT & cybersécurité, maîtrise des énergies renouvelables et pratiques agricoles modernes.</p>
+        <a href="#contact" class="strip-link">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ POLES / EXPERTISES -->
+  <section id="poles" class="poles-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Nos Expertises</span>
+        <h2>Quatre Pôles. <span class="gradient-text">Une Vision.</span></h2>
+        <p>Chaque pôle représente un domaine d'excellence opéré avec les mêmes standards de qualité et d'innovation.</p>
+      </div>
+
+      <div class="poles-grid">
+
+        <!-- Pôle Tech -->
+        <div class="pole-card reveal" data-pole="tech">
+          <div class="pole-accent"></div>
+          <!-- 📁 images/poles/tech.jpg → photo réseau/cybersécurité -->
+          <div class="pole-img-wrap">
+            <img src="TNN.jpg"
+                 alt="Tech & Numérique — Cybersécurité"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="img-fallback"><i class="fa-solid fa-shield-halved"></i></div>
+          </div>
+          <div class="pole-icon-wrap">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="pole-badge">Pôle 01</div>
+          <h3>Tech & Numérique</h3>
+          <p>Maintenance informatique professionnelle et cybersécurité avancée pour protéger vos infrastructures digitales.</p>
+          <ul class="pole-services">
+            <li><i class="fa-solid fa-check"></i> Maintenance PC & Réseaux</li>
+            <li><i class="fa-solid fa-check"></i> Audit de sécurité informatique</li>
+            <li><i class="fa-solid fa-check"></i> Protection contre les cybermenaces</li>
+            <li><i class="fa-solid fa-check"></i> Formation cybersécurité</li>
+          </ul>
+          <a href="#boutique" class="pole-cta">Voir les services <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Pôle Énergie -->
+        <div class="pole-card reveal" data-pole="energy">
+          <div class="pole-accent"></div>
+          <!-- 📁 images/poles/energie.jpg → panneaux solaires, biogaz -->
+          <div class="pole-img-wrap">
+            <img src="panneau.jpg"
+                 alt="Énergie Renouvelable — Solaire & Biogaz"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="img-fallback"><i class="fa-solid fa-solar-panel"></i></div>
+          </div>
+          <div class="pole-icon-wrap">
+            <i class="fa-solid fa-solar-panel"></i>
+          </div>
+          <div class="pole-badge">Pôle 02</div>
+          <h3>Énergie & Environnement</h3>
+          <p>Solutions énergétiques renouvelables et durables : installations solaires et systèmes de biogaz sur mesure.</p>
+          <ul class="pole-services">
+            <li><i class="fa-solid fa-check"></i> Installation panneaux solaires</li>
+            <li><i class="fa-solid fa-check"></i> Systèmes de biogaz</li>
+            <li><i class="fa-solid fa-check"></i> Audit énergétique</li>
+            <li><i class="fa-solid fa-check"></i> Maintenance & suivi</li>
+          </ul>
+          <a href="#boutique" class="pole-cta">Voir les services <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Pôle Agriculture -->
+        <div class="pole-card reveal" data-pole="agri">
+          <div class="pole-accent"></div>
+          <!-- 📁 images/poles/agriculture.jpg → champs, hydroponie, pisciculture -->
+          <div class="pole-img-wrap">
+            <img src="AA.jpg"
+                 alt="Agriculture & Aquaculture"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="img-fallback"><i class="fa-solid fa-seedling"></i></div>
+          </div>
+          <div class="pole-icon-wrap">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <div class="pole-badge">Pôle 03</div>
+          <h3>Agriculture & Aquaculture</h3>
+          <p>Agriculture moderne et pisciculture optimisée avec des méthodes innovantes pour maximiser les rendements.</p>
+          <ul class="pole-services">
+            <li><i class="fa-solid fa-check"></i> Conseil en agriculture</li>
+            <li><i class="fa-solid fa-check"></i> Mise en place de fermes piscicoles</li>
+            <li><i class="fa-solid fa-check"></i> Agriculture hors-sol & hydroponique</li>
+            <li><i class="fa-solid fa-check"></i> Gestion de production</li>
+          </ul>
+          <a href="#boutique" class="pole-cta">Voir les services <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Pôle Conseil -->
+        <div class="pole-card reveal" data-pole="conseil">
+          <div class="pole-accent"></div>
+          <!-- 📁 images/poles/conseil.jpg → réunion, formation, tableau -->
+          <div class="pole-img-wrap">
+            <img src="CF.jpg"
+                 alt="Conseil & Formation"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="img-fallback"><i class="fa-solid fa-chart-line"></i></div>
+          </div>
+          <div class="pole-icon-wrap">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div class="pole-badge">Pôle 04</div>
+          <h3>Conseil & Formation</h3>
+          <p>Accompagnement stratégique, études économiques et formations professionnelles certifiantes dans tous nos domaines.</p>
+          <ul class="pole-services">
+            <li><i class="fa-solid fa-check"></i> Conseil en économie agricole</li>
+            <li><i class="fa-solid fa-check"></i> Business plans & études de marché</li>
+            <li><i class="fa-solid fa-check"></i> Formations certifiantes</li>
+            <li><i class="fa-solid fa-check"></i> Accompagnement projet</li>
+          </ul>
+          <a href="#boutique" class="pole-cta">Voir les services <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ BOUTIQUE -->
+  <section id="boutique" class="boutique-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Boutique & Services</span>
+        <h2>Nos Produits <span class="gradient-text">& Services</span></h2>
+        <p>Commandez directement en ligne. Paiement sécurisé par carte ou Mobile Money.</p>
+      </div>
+
+      <div class="shop-filters reveal">
+        <button class="filter-btn active" data-filter="all">Tout voir</button>
+        <button class="filter-btn" data-filter="tech">Tech & Sécu</button>
+        <button class="filter-btn" data-filter="energie">Énergie</button>
+        <button class="filter-btn" data-filter="agri">Agriculture</button>
+        <button class="filter-btn" data-filter="formation">Formations</button>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+
+        <!-- Produit 1 : Audit Sécurité -->
+        <div class="product-card reveal" data-cat="tech">
+          <div class="product-badge">Populaire</div>
+          <div class="product-img">
+            <!-- 📁 images/produits/audit-securite.jpg -->
+            <img src="TN.jpg"
+                 alt="Audit de Sécurité Complet"
+                 loading="lazy"
+                 onerror="this.style.display='none'"
+                 onload="this.classList.add('loaded')">
+            <div class="img-fallback"><i class="fa-solid fa-shield-halved"></i></div>
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Cybersécurité</span>
+            <h4>Audit de Sécurité Complet</h4>
+            <p>Analyse complète de votre infrastructure réseau et informatique avec rapport détaillé et recommandations.</p>
+            <div class="product-footer">
+              <span class="product-price">50 000 <small>FCFA</small></span>
+              <button class="btn-cart" onclick="addToCart('Audit Sécurité', 50000)">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Produit 2 : Kit Solaire -->
+        <div class="product-card reveal" data-cat="energie">
+          <div class="product-img">
+            <!-- 📁 images/produits/kit-solaire.jpg -->
+            <img src="solaire.jpg"
+                 alt="Kit Solaire Résidentiel 500W"
+                 loading="lazy"
+                 onerror="this.style.display='none'"
+                 onload="this.classList.add('loaded')">
+            <div class="img-fallback"><i class="fa-solid fa-solar-panel"></i></div>
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Énergie Solaire</span>
+            <h4>Kit Solaire Résidentiel 500W</h4>
+            <p>Kit complet panneau + batterie + régulateur + onduleur. Installation incluse dans un rayon de 50km.</p>
+            <div class="product-footer">
+              <span class="product-price">350 000 <small>FCFA</small></span>
+              <button class="btn-cart" onclick="addToCart('Kit Solaire 500W', 350000)">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Produit 3 : Maintenance Annuelle -->
+        <div class="product-card reveal" data-cat="tech">
+          <div class="product-img">
+            <!-- 📁 images/produits/maintenance-info.jpg -->
+            <img src="maint.jpg"
+                 alt="Maintenance Informatique Annuelle"
+                 loading="lazy"
+                 onerror="this.style.display='none'"
+                 onload="this.classList.add('loaded')">
+            <div class="img-fallback"><i class="fa-solid fa-laptop-code"></i></div>
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Maintenance</span>
+            <h4>Maintenance Informatique Annuelle</h4>
+            <p>Contrat annuel de maintenance pour votre parc informatique. Intervention sous 24h.</p>
+            <div class="product-footer">
+              <span class="product-price">120 000 <small>FCFA/an</small></span>
+              <button class="btn-cart" onclick="addToCart('Maintenance Annuelle', 120000)">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Produit 4 : Bassin Piscicole -->
+        <div class="product-card reveal" data-cat="agri">
+          <div class="product-img">
+            <!-- 📁 images/produits/bassin-piscicole.jpg -->
+            <img src="LVJU-Aquaculture-Big-Biofloc-Fish-Tank-Suppliers-PVC-Tarpaulin-Round-Fish-Farming-Tank-Shrimp-Pond.png_300x300.avif"
+                 alt="Étude & Mise en Place Bassin Piscicole"
+                 loading="lazy"
+                 onerror="this.style.display='none'"
+                 onload="this.classList.add('loaded')">
+            <div class="img-fallback"><i class="fa-solid fa-fish"></i></div>
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Pisciculture</span>
+            <h4>Étude & Mise en Place Bassin</h4>
+            <p>Conception, creusage et équipement de bassin piscicole. Conseil sur les espèces adaptées.</p>
+            <div class="product-footer">
+              <span class="product-price">200 000 <small>FCFA</small></span>
+              <button class="btn-cart" onclick="addToCart('Bassin Piscicole', 200000)">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Produit 5 : Formation Cybersécurité -->
+        <div class="product-card reveal" data-cat="formation">
+          <div class="product-badge new">Nouveau</div>
+          <div class="product-img">
+            <!-- 📁 images/produits/formation-cyber.jpg -->
+            <img src="cyber.jpg"
+                 alt="Formation Cybersécurité Initiale"
+                 loading="lazy"
+                 onerror="this.style.display='none'"
+                 onload="this.classList.add('loaded')">
+            <div class="img-fallback"><i class="fa-solid fa-graduation-cap"></i></div>
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Formation</span>
+            <h4>Formation Cybersécurité Initiale</h4>
+            <p>5 jours de formation intensive. Bases de la sécurité réseau, protection des données, bonnes pratiques.</p>
+            <div class="product-footer">
+              <span class="product-price">75 000 <small>FCFA</small></span>
+              <button class="btn-cart" onclick="addToCart('Formation Cybersécurité', 75000)">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Produit 6 : Digesteur Biogaz -->
+        <div class="product-card reveal" data-cat="energie">
+          <div class="product-img">
+            <!-- 📁 images/produits/biogaz-digesteur.jpg -->
+            <img src="Biogaz.jpg"
+                 alt="Installation Digesteur Biogaz Familial"
+                 loading="lazy"
+                 onerror="this.style.display='none'"
+                 onload="this.classList.add('loaded')">
+            <div class="img-fallback"><i class="fa-solid fa-fire-flame-curved"></i></div>
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Biogaz</span>
+            <h4>Installation Digesteur Biogaz Familial</h4>
+            <p>Digesteur 6m³ pour foyer de 6 personnes. Valorisation des déchets organiques en énergie propre.</p>
+            <div class="product-footer">
+              <span class="product-price">180 000 <small>FCFA</small></span>
+              <button class="btn-cart" onclick="addToCart('Digesteur Biogaz', 180000)">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="payment-methods reveal">
+        <span>Paiement sécurisé via :</span>
+        <div class="payment-icons">
+          <span class="pay-badge"><i class="fa-brands fa-stripe-s"></i> Stripe</span>
+          <span class="pay-badge"><i class="fa-brands fa-paypal"></i> PayPal</span>
+          <span class="pay-badge"><i class="fa-solid fa-mobile-screen-button"></i> Mobile Money</span>
+          <span class="pay-badge"><i class="fa-solid fa-wallet"></i> FedaPay</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fa-solid fa-cart-shopping"></i> Mon Panier</h3>
+      <button id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <p>Votre panier est vide</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total">
+        Total : <strong id="cartTotal">0</strong> FCFA
+      </div>
+      <button class="btn-primary full-width" id="checkoutBtn">
+        <i class="fa-solid fa-lock"></i> Passer la commande
+      </button>
+    </div>
+  </div>
+
+  <!-- Cart FAB -->
+  <button class="cart-float" id="cartFloat" aria-label="Ouvrir le panier">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+
+  <!-- ═══════════════════════════════════════════ PORTFOLIO / PROJETS PHARES -->
+  <section id="portfolio" class="portfolio-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Réalisations</span>
+        <h2>Projets <span class="gradient-text">Phares</span></h2>
+        <p>Quelques réalisations concrètes qui illustrent notre savoir-faire terrain.</p>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <!-- Projet 1 : Cybersécurité -->
+        <div class="portfolio-item reveal">
+          <div class="portfolio-img">
+            <!-- 📁 images/projets/projet-cybersec.jpg -->
+            <img src="re.jpg"
+                 alt="Sécurisation Réseau PME"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+          </div>
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">Cybersécurité</span>
+            <h4>Sécurisation Réseau — PME Industrielle</h4>
+            <p>Audit complet + déploiement firewall + formation équipe IT. Réduction des incidents de 94%.</p>
+            <a href="#contact" class="portfolio-link">Détails <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Projet 2 : Solaire -->
+        <div class="portfolio-item reveal">
+          <div class="portfolio-img">
+            <!-- 📁 images/projets/projet-solaire.jpg -->
+            <img src="2kw.jpg"
+                 alt="Station Solaire École Rurale"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+          </div>
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">Énergie Solaire</span>
+            <h4>Station Solaire 2kW — École Rurale</h4>
+            <p>Électrification complète d'une école de 300 élèves.</p>
+            <a href="#contact" class="portfolio-link">Détails <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Projet 3 : Agriculture -->
+        <div class="portfolio-item reveal">
+          <div class="portfolio-img">
+            <!-- 📁 images/projets/projet-maraicher.jpg -->
+            <img src="AA.jpg"
+                 alt="Ferme Maraîchère Hors-Sol"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+          </div>
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">Agriculture</span>
+            <h4>Ferme Maraîchère Hors-Sol</h4>
+            <p>Conception et mise en place d'une exploitation hydroponique de 500m².</p>
+            <a href="#contact" class="portfolio-link">Détails <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Projet 4 : Biogaz -->
+        <div class="portfolio-item reveal">
+          <div class="portfolio-img">
+            <!-- 📁 images/projets/projet-biogaz.jpg -->
+            <img src="Biogaz.jpg"
+                 alt="Digesteur Biogaz Communautaire"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        
+          </div>
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">Biogaz</span>
+            <h4>Digesteur Biogaz Communautaire</h4>
+            <p>Installation biogaz pour 15 foyers ruraux. Économie de 60% sur la facture énergie.</p>
+            <a href="#contact" class="portfolio-link">Détails <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Projet 5 : Pisciculture -->
+        <div class="portfolio-item reveal">
+          <div class="portfolio-img">
+            <!-- 📁 images/projets/projet-pisciculture.jpg -->
+            <img src="pisi.jpg"
+                 alt="Ferme Piscicole 4 Bassins"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            
+          </div>
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">Pisciculture</span>
+            <h4>Ferme Piscicole — 4 Bassins</h4>
+            <p>Étude, creusage et mise en production de 4 bassins de tilapia et silure.</p>
+            <a href="#contact" class="portfolio-link">Détails <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ RESERVATION -->
+  <section id="reservation" class="reservation-section">
+    <div class="container">
+      <div class="reservation-grid">
+        <div class="reservation-info reveal">
+          <span class="section-tag">Prendre RDV</span>
+          <h2>Réservez Votre <span class="gradient-text">Consultation</span></h2>
+          <p>Discutons de votre projet lors d'une consultation gratuite de 30 minutes. Nous analyserons vos besoins et vous proposerons les meilleures solutions.</p>
+          <div class="rdv-features">
+            <div class="rdv-feature">
+              <i class="fa-solid fa-clock"></i>
+              <div>
+                <strong>30 min gratuites</strong>
+                <span>Premier contact sans engagement</span>
+              </div>
+            </div>
+            <div class="rdv-feature">
+              <i class="fa-solid fa-video"></i>
+              <div>
+                <strong>En ligne ou en personne</strong>
+                <span>WhatsApp, Zoom ou sur place</span>
+              </div>
+            </div>
+            <div class="rdv-feature">
+              <i class="fa-solid fa-file-lines"></i>
+              <div>
+                <strong>Devis gratuit</strong>
+                <span>Reçu sous 24h après la consultation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reservation-form reveal">
+          <form id="rdvForm" class="form-card">
+            <h3>Formulaire de Réservation</h3>
+            <div class="form-group">
+              <label>Nom complet *</label>
+              <input type="text" name="nom" placeholder="Ex: Jean Dupont" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" name="email" placeholder="votre@email.com" required />
+              </div>
+              <div class="form-group">
+                <label>Téléphone *</label>
+                <input type="tel" name="tel" placeholder="+229 XX XX XX XX" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Pôle d'expertise *</label>
+              <select name="pole" required>
+                <option value="">-- Choisir un pôle --</option>
+                <option>Tech & Numérique (Cybersécurité / Maintenance)</option>
+                <option>Énergie & Environnement (Solaire / Biogaz)</option>
+                <option>Agriculture & Aquaculture</option>
+                <option>Conseil & Formation</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Date souhaitée *</label>
+                <input type="date" name="date" required />
+              </div>
+              <div class="form-group">
+                <label>Heure préférée</label>
+                <select name="heure">
+                  <option>08h00</option>
+                  <option>09h00</option>
+                  <option>10h00</option>
+                  <option>11h00</option>
+                  <option>14h00</option>
+                  <option>15h00</option>
+                  <option>16h00</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Décrivez votre projet</label>
+              <textarea rows="3" name="description" placeholder="Quelques mots sur votre besoin..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary full-width">
+              <i class="fa-solid fa-calendar-check"></i> Confirmer le Rendez-vous
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Témoignages</span>
+        <h2>Ce que disent <span class="gradient-text">nos clients</span></h2>
+      </div>
+      <div class="testi-grid">
+
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Mourchid Entreprise a sécurisé tout notre réseau informatique. Travail sérieux, rapide et professionnel. Je recommande vivement !"</p>
+          <div class="testi-author">
+            <!-- 📁 images/temoignages/adeola-koffi.jpg -->
+            <div class="testi-avatar">
+              <img src="images/temoignages/adeola-koffi.jpg"
+                   alt="Adeola Koffi"
+                   loading="lazy"
+                   onerror="this.style.display='none'; this.parentElement.textContent='AK'">
+            </div>
+            <div>
+              <strong>Adeola Koffi</strong>
+              <span>Directeur, PME Cotonou</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Notre installation solaire fonctionne parfaitement depuis 8 mois. Économies réelles sur la facture, et suivi régulier de l'équipe."</p>
+          <div class="testi-author">
+            <!-- 📁 images/temoignages/fatou-mensah.jpg -->
+            <div class="testi-avatar">
+              <img src="images/temoignages/fatou-mensah.jpg"
+                   alt="Fatou Mensah"
+                   loading="lazy"
+                   onerror="this.style.display='none'; this.parentElement.textContent='FM'">
+            </div>
+            <div>
+              <strong>Fatou Mensah</strong>
+              <span>Exploitante agricole</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p>"La formation en cybersécurité était excellente. Très pratique et applicable immédiatement. Notre équipe est maintenant bien mieux préparée."</p>
+          <div class="testi-author">
+            <!-- 📁 images/temoignages/pierre-dossou.jpg -->
+            <div class="testi-avatar">
+              <img src="images/temoignages/pierre-dossou.jpg"
+                   alt="Pierre Dossou"
+                   loading="lazy"
+                   onerror="this.style.display='none'; this.parentElement.textContent='PD'">
+            </div>
+            <div>
+              <strong>Pierre Dossou</strong>
+              <span>Responsable IT, ONG</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Contact</span>
+        <h2>Entrons en <span class="gradient-text">Contact</span></h2>
+        <p>Une question ? Un projet ? Nous répondons sous 24h.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-card">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Localisation</strong>
+              <span>Cotonou, Bénin</span>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <strong>Téléphone / WhatsApp</strong>
+              <span>+229 01 52 92 67 79</span>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <strong>Email</strong>
+              <span>mourchidkarimou4@gmail.com</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn tiktok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="social-btn whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-btn youtube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal">
+          <form id="contactForm" class="form-card">
+            <div class="form-group">
+              <label>Nom *</label>
+              <input type="text" name="nom" placeholder="Votre nom" required />
+            </div>
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" name="email" placeholder="votre@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Sujet</label>
+              <input type="text" name="sujet" placeholder="Objet de votre message" />
+            </div>
+            <div class="form-group">
+              <label>Message *</label>
+              <textarea name="message" rows="5" placeholder="Décrivez votre projet ou posez votre question..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary full-width">
+              <i class="fa-solid fa-paper-plane"></i> Envoyer le message
+            </button>
+          </form>
+        </div>
+
+        <div class="map-wrap reveal">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127481.39!2d2.3158!3d6.3654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1023552f5d4b05b3%3A0xf2e6f10ac23af85!2sCotonou%2C%20Benin!5e0!3m2!1sfr!2s!4v1700000000000"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="LOGO.png" alt="ME Logo" class="footer-logo" />
+          <p>Mourchid Entreprise — votre partenaire multisectoriel de confiance en Afrique de l'Ouest.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn tiktok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="social-btn whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Pôles</h5>
+          <ul>
+            <li><a href="#poles">Tech & Numérique</a></li>
+            <li><a href="#poles">Énergie & Environnement</a></li>
+            <li><a href="#poles">Agriculture & Aquaculture</a></li>
+            <li><a href="#poles">Conseil & Formation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#boutique">Boutique</a></li>
+            <li><a href="#portfolio">Réalisations</a></li>
+            <li><a href="#reservation">Rendez-vous</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Paiements acceptés</h5>
+          <div class="footer-payment">
+            <span><i class="fa-brands fa-stripe-s"></i> Stripe</span>
+            <span><i class="fa-brands fa-paypal"></i> PayPal</span>
+            <span><i class="fa-solid fa-mobile-screen-button"></i> Mobile Money</span>
+            <span><i class="fa-solid fa-wallet"></i> FedaPay</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Mourchid Entreprise. Tous droits réservés.</p>
+        <p>Conçu avec <i class="fa-solid fa-heart" style="color:#F7941D"></i> au Bénin</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Modal paiement -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="checkoutModal">
+      <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+      <h3><i class="fa-solid fa-lock"></i> Choisir un mode de paiement</h3>
+      <p class="modal-total">Total : <strong id="modalTotal">0 FCFA</strong></p>
+      <div class="payment-options">
+        <button class="pay-option" onclick="selectPayment('stripe')">
+          <i class="fa-brands fa-stripe-s"></i>
+          <span>Carte bancaire (Stripe)</span>
+          <small>Visa, Mastercard, AMEX</small>
+        </button>
+        <button class="pay-option" onclick="selectPayment('paypal')">
+          <i class="fa-brands fa-paypal"></i>
+          <span>PayPal</span>
+          <small>Compte PayPal</small>
+        </button>
+        <button class="pay-option" onclick="selectPayment('fedapay')">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span>Mobile Money</span>
+          <small>MTN, Moov, Orange Money</small>
+        </button>
+      </div>
+      <p class="modal-note"><i class="fa-solid fa-info-circle"></i> Intégration paiement en cours de finalisation.</p>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
